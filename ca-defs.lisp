@@ -4,6 +4,7 @@
 
 File: ca-defs.lisp
 Author: Vladimir Kulyukin
+Modified by: Nick Sorenson
 Description: Some word definitions for CA
 ===============================================
 |#

@@ -4,6 +4,7 @@
 
 File: sam.lisp
 Bugs to vladimir kulyukin in canvas.
+Modified by: Nick Sorenson
 ===========================================================
 |#
 
@@ -164,28 +165,29 @@ in *possible-next-events*."
 ;;; ================= SHOPPING story and script ==================
 
 (setf (events-script '$SHOPPING)
-      '((ptrans (:actor ?client)
+	
+      '((ptrans (:actor ?client) ;;; Client to store
 	        (:object ?client)
                 (:to ?store)
 	        (:time ?time))
-        (atrans (:time ?time)
+        (atrans (:time ?time) ;;; Abstract transfer of Kite to client
                 (:actor ?client)
 		(:object ?object)) 
-        (ptrans (:actor ?client)
+        (ptrans (:actor ?client) ;;; Physical transfer of kite to client
 		(:object ?object)
 	        (:time ?time)
 	        (:to ?client))
-	(atrans (:actor ?store)
+	(atrans (:actor ?store) ;;; Ownership transfers from store to client
 		(:object ?object)
                 (:from ?store)
                 (:to ?client)
 		(:time ?time))
-	(atrans (:actor ?client)
+	(atrans (:actor ?client) ;;; Money event
                 (:object (money))
                 (:from ?client)
                 (:to ?store)
                 (:time ?time))
-	(ptrans (:actor ?client)
+	(ptrans (:actor ?client) ;;; Actor goes home 
                 (:object ?client)
                 (:from ?store)
                 (:to ?elsewhere)
