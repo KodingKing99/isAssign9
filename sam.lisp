@@ -164,10 +164,32 @@ in *possible-next-events*."
 ;;; ================= SHOPPING story and script ==================
 
 (setf (events-script '$SHOPPING)
-      '(
-        ;;; your code here
-       )
-      )
+      '((ptrans (:actor ?client)
+	        (:object ?client)
+                (:to ?store)
+	        (:time ?time))
+        (atrans (:time ?time)
+                (:actor ?client)
+		(:object ?object)) 
+        (ptrans (:actor ?client)
+		(:object ?object)
+	        (:time ?time)
+	        (:to ?client))
+	(atrans (:actor ?store)
+		(:object ?object)
+                (:from ?store)
+                (:to ?client)
+		(:time ?time))
+	(atrans (:actor ?client)
+                (:object (money))
+                (:from ?client)
+                (:to ?store)
+                (:time ?time))
+	(ptrans (:actor ?client)
+                (:object ?client)
+                (:from ?store)
+                (:to ?elsewhere)
+                (:time ?time))))
 
 (setf (associated-script 'store) '$shopping)
 
